@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Jogo de Adivinhação</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align: center;
+    margin-top: 40px;
+}
+
+input{
+    padding: 8px;
+    width: 120px;
+}
+
+button{
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#mensagem{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Jogo de Adivinhação</h2>
+<p>Adivinhe o número entre 1 e 20</p>
+
+<input type="number" id="palpite">
+<button id="btnTentar">Tentar</button>
+<button id="btnReiniciar">Reiniciar</button>
+
+<p>Tentativas: <span id="tentativas">0</span></p>
+
+<div id="mensagem"></div>
+
+<script>
+
+// variáveis
+let numeroSecreto = Math.floor(Math.random() * 20) + 1;
+let contador = 0;
+
+// função de tentativa
+function tentarNumero(){
+
+    let palpite = document.getElementById("palpite").value;
+    let mensagem = document.getElementById("mensagem");
+    let tentativas = document.getElementById("tentativas");
+
+    if(palpite === ""){
+        mensagem.innerHTML = "Digite um número!";
+        return;
+    }
+
+    palpite = parseInt(palpite);
+
+    contador++;
+
+    tentativas.innerHTML = contador;
+
+    // condicionais
+    if(palpite > numeroSecreto){
+        mensagem.innerHTML = "Muito alto!";
+    }
+    else if(palpite < numeroSecreto){
+        mensagem.innerHTML = "Muito baixo!";
+    }
+    else{
+        mensagem.innerHTML = "Acertou! 🎉 O número era " + numeroSecreto;
+    }
+
+}
+
+// função para reiniciar jogo
+function reiniciarJogo(){
+
+    numeroSecreto = Math.floor(Math.random() * 20) + 1;
+    contador = 0;
+
+    document.getElementById("tentativas").innerHTML = 0;
+    document.getElementById("mensagem").innerHTML = "";
+    document.getElementById("palpite").value = "";
+}
+
+// eventos
+document.getElementById("btnTentar").addEventListener("click", tentarNumero);
+document.getElementById("btnReiniciar").addEventListener("click", reiniciarJogo);
+
+</script>
+
+</body>
+</html>

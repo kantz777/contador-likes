@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerador de Tabuada</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align: center;
+    margin-top: 40px;
+}
+
+input{
+    padding: 8px;
+    width: 120px;
+}
+
+button{
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+#tabuada{
+    margin-top: 20px;
+    font-size: 18px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Gerador de Tabuada</h2>
+
+<input type="number" id="numero" placeholder="Digite um número">
+<button onclick="gerarTabuada()">Gerar</button>
+
+<div id="tabuada"></div>
+
+<script>
+
+function gerarTabuada(){
+
+    // variável pegando o número digitado
+    let numero = document.getElementById("numero").value;
+
+    // pegando a div onde a tabuada vai aparecer
+    let divTabuada = document.getElementById("tabuada");
+
+    // validação simples
+    if(numero === ""){
+        divTabuada.innerHTML = "Digite um número!";
+        return;
+    }
+
+    // limpar resultado anterior
+    divTabuada.innerHTML = "";
+
+    // estrutura de repetição
+    for(let i = 1; i <= 10; i++){
+
+        let resultado = numero * i;
+
+        // criando elemento no HTML
+        let linha = document.createElement("p");
+
+        linha.textContent = numero + " x " + i + " = " + resultado;
+
+        // adicionando ao DOM
+        divTabuada.appendChild(linha);
+    }
+}
+
+</script>
+
+</body>
+</html>

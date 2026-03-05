@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro Completo</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    text-align: center;
+    margin-top: 30px;
+}
+
+form{
+    width: 300px;
+    margin: auto;
+}
+
+input{
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+}
+
+button{
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.erro{
+    color: red;
+    font-size: 13px;
+    text-align: left;
+}
+
+.sucesso{
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+input.erroCampo{
+    border: 2px solid red;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Cadastro de Usuário</h2>
+
+<form id="formCadastro">
+
+<input type="text" id="nome" placeholder="Nome">
+<div id="erroNome" class="erro"></div>
+
+<input type="email" id="email" placeholder="Email">
+<div id="erroEmail" class="erro"></div>
+
+<input type="number" id="idade" placeholder="Idade">
+<div id="erroIdade" class="erro"></div>
+
+<input type="password" id="senha" placeholder="Senha">
+<div id="erroSenha" class="erro"></div>
+
+<input type="password" id="confirmarSenha" placeholder="Confirmar Senha">
+<div id="erroConfirmarSenha" class="erro"></div>
+
+<button type="submit">Cadastrar</button>
+
+</form>
+
+<div id="mensagem"></div>
+
+<script>
+
+function validarFormulario(event){
+
+    event.preventDefault();
+
+    // variáveis
+    let nome = document.getElementById("nome");
+    let email = document.getElementById("email");
+    let idade = document.getElementById("idade");
+    let senha = document.getElementById("senha");
+    let confirmarSenha = document.getElementById("confirmarSenha");
+
+    let mensagem = document.getElementById("mensagem");
+
+    // limpar erros
+    limparErros();
+
+    let valido = true;
+
+    // validação nome
+    if(nome.value === ""){
+        mostrarErro("erroNome","Nome é obrigatório");
+        nome.classList.add("erroCampo");
+        valido = false;
+    }
+
+    // validação email
+    if(email.value === "" || !email.value.includes("@")){
+        mostrarErro("erroEmail","Email inválido");
+        email.classList.add("erroCampo");
+        valido = false;
+    }
+
+    // validação idade
+    if(idade.value === "" || idade.value < 18){
+        mostrarErro("erroIdade","Idade deve ser 18 ou mais");
+        idade.classList.add("erroCampo");
+        valido = false;
+    }
+
+    // validação senha
+    if(senha.value.length < 8){
+        mostrarErro("erroSenha","Senha deve ter no mínimo 8 caracteres");
+        senha.classList.add("erroCampo");
+        valido = false;
+    }
+
+    // confirmar senha
+    if(confirmarSenha.value !== senha.value || confirmarSenha.value === ""){
+        mostrarErro("erroConfirmarSenha","As senhas devem ser iguais");
+        confirmarSenha.classList.add("erroCampo");
+        valido = false;
+    }
+
+    // sucesso
+    if(valido){
+        mensagem.innerHTML = "Cadastro realizado com sucesso! 🎉";
+        mensagem.className = "sucesso";
+        document.getElementById("formCadastro").reset();
+    }
+
+}
+
+// função para mostrar erro
+function mostrarErro(id, texto){
+    document.getElementById(id).innerHTML = texto;
+}
+
+// limpar erros
+function limparErros(){
+
+    let erros = document.querySelectorAll(".erro");
+    erros.forEach(function(e){
+        e.innerHTML = "";
+    });
+
+    let campos = document.querySelectorAll("input");
+    campos.forEach(function(c){
+        c.classList.remove("erroCampo");
+    });
+
+    document.getElementById("mensagem").innerHTML = "";
+
+}
+
+// evento
+document.getElementById("formCadastro").addEventListener("submit", validarFormulario);
+
+</script>
+
+</body>
+</html>

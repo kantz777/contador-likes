@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Contador de Visitantes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        p {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Blog do João</h1>
+
+    <button id="btnCurtir">Gostei 👍</button>
+
+    <p id="contador">Total de cliques: 0</p>
+
+    <script>
+        // Variável para armazenar o total de cliques (tipo number)
+        let totalCliques = 0;
+
+        // Selecionando elementos do DOM
+        const botao = document.getElementById("btnCurtir");
+        const textoContador = document.getElementById("contador");
+
+        // Adicionando evento de clique ao botão
+        botao.addEventListener("click", function() {
+            
+            // Operador de incremento
+            totalCliques++;
+
+            // Alterando o conteúdo do texto
+            textoContador.textContent = "Total de cliques: " + totalCliques;
+        });
+    </script>
+
+</body>
+</html>

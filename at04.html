@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Professor Automatizado</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align: center;
+    margin-top: 50px;
+}
+
+input{
+    padding: 8px;
+    margin: 5px;
+}
+
+button{
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#resultado{
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Professor Automatizado</h2>
+
+<form id="formNotas">
+    <input type="number" id="nota1" placeholder="Primeira nota" min="0" max="10" step="0.1">
+    <input type="number" id="nota2" placeholder="Segunda nota" min="0" max="10" step="0.1">
+    <br><br>
+    <button type="submit">Calcular Média</button>
+</form>
+
+<div id="resultado"></div>
+
+<script>
+
+function calcularMedia(event){
+
+    event.preventDefault(); // impede recarregar página
+
+    // variáveis
+    let n1 = document.getElementById("nota1").value;
+    let n2 = document.getElementById("nota2").value;
+    let resultado = document.getElementById("resultado");
+
+    // validação
+    if(n1 === "" || n2 === ""){
+        resultado.innerHTML = "Digite as duas notas!";
+        resultado.style.background = "#ddd";
+        return;
+    }
+
+    // converter para número
+    n1 = parseFloat(n1);
+    n2 = parseFloat(n2);
+
+    // operador
+    let media = (n1 + n2) / 2;
+
+    // condicionais
+    if(media >= 7){
+        resultado.innerHTML = "Média: " + media.toFixed(1) + " - Aprovado";
+        resultado.style.background = "green";
+        resultado.style.color = "white";
+    }
+    else if(media >= 5){
+        resultado.innerHTML = "Média: " + media.toFixed(1) + " - Recuperação";
+        resultado.style.background = "yellow";
+        resultado.style.color = "black";
+    }
+    else{
+        resultado.innerHTML = "Média: " + media.toFixed(1) + " - Reprovado";
+        resultado.style.background = "red";
+        resultado.style.color = "white";
+    }
+}
+
+// evento
+document.getElementById("formNotas").addEventListener("submit", calcularMedia);
+
+</script>
+
+</body>
+</html>

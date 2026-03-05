@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sistema de Votação</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align: center;
+    margin-top: 40px;
+}
+
+button{
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.resultado{
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#vencedor{
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Votação para Representante da Turma</h2>
+
+<button onclick="votar('ana')">Ana</button>
+<button onclick="votar('bruno')">Bruno</button>
+<button onclick="votar('carla')">Carla</button>
+
+<div class="resultado">Ana: <span id="votosAna">0</span></div>
+<div class="resultado">Bruno: <span id="votosBruno">0</span></div>
+<div class="resultado">Carla: <span id="votosCarla">0</span></div>
+
+<br>
+<button onclick="mostrarVencedor()">Ver quem está ganhando</button>
+
+<div id="vencedor"></div>
+
+<script>
+
+// variáveis de votos
+let votosAna = 0;
+let votosBruno = 0;
+let votosCarla = 0;
+
+// função de votar
+function votar(candidato){
+
+    if(candidato === "ana"){
+        votosAna++;
+        document.getElementById("votosAna").innerHTML = votosAna;
+    }
+    else if(candidato === "bruno"){
+        votosBruno++;
+        document.getElementById("votosBruno").innerHTML = votosBruno;
+    }
+    else if(candidato === "carla"){
+        votosCarla++;
+        document.getElementById("votosCarla").innerHTML = votosCarla;
+    }
+
+}
+
+// função para mostrar vencedor
+function mostrarVencedor(){
+
+    let resultado = document.getElementById("vencedor");
+
+    if(votosAna > votosBruno && votosAna > votosCarla){
+        resultado.innerHTML = "Ana está ganhando!";
+    }
+    else if(votosBruno > votosAna && votosBruno > votosCarla){
+        resultado.innerHTML = "Bruno está ganhando!";
+    }
+    else if(votosCarla > votosAna && votosCarla > votosBruno){
+        resultado.innerHTML = "Carla está ganhando!";
+    }
+    else{
+        resultado.innerHTML = "Está empatado!";
+    }
+
+}
+
+</script>
+
+</body>
+</html>

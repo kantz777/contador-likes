@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Missões</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    text-align: center;
+    margin-top: 40px;
+}
+
+input{
+    padding: 8px;
+    width: 200px;
+}
+
+button{
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+li{
+    background: #eee;
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.concluida{
+    text-decoration: line-through;
+    background: lightgreen;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Missões do Jogador</h2>
+
+<input type="text" id="missao" placeholder="Digite a missão">
+<button id="btnAdicionar">Adicionar</button>
+
+<ul id="listaMissoes"></ul>
+
+<script>
+
+// selecionando elementos
+let inputMissao = document.getElementById("missao");
+let btnAdicionar = document.getElementById("btnAdicionar");
+let lista = document.getElementById("listaMissoes");
+
+// função para adicionar missão
+function adicionarMissao(){
+
+    let texto = inputMissao.value;
+
+    if(texto === ""){
+        alert("Digite uma missão!");
+        return;
+    }
+
+    // criando item da lista
+    let item = document.createElement("li");
+
+    item.textContent = texto;
+
+    // evento para marcar missão como concluída
+    item.addEventListener("click", function(){
+        item.classList.toggle("concluida");
+    });
+
+    // adicionando na lista
+    lista.appendChild(item);
+
+    // limpar campo
+    inputMissao.value = "";
+}
+
+// evento do botão
+btnAdicionar.addEventListener("click", adicionarMissao);
+
+</script>
+
+</body>
+</html>

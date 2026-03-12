@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerenciador de Alunos</title>
+</head>
+<body>
+
+<h2>Gerenciador de Alunos</h2>
+
+<input type="text" id="nome" placeholder="Nome do aluno">
+<input type="number" id="nota" placeholder="Nota">
+<button onclick="adicionarAluno()">Adicionar</button>
+<button onclick="mostrarAprovados()">Mostrar Aprovados</button>
+<button onclick="mostrarTodos()">Mostrar Todos</button>
+
+<ul id="lista"></ul>
+
+<script>
+const alunos = [];
+
+function adicionarAluno() {
+  const nome = document.getElementById("nome").value;
+  const nota = Number(document.getElementById("nota").value);
+
+  if(nome === "" || nota === "") return;
+
+  
+  alunos.push({ nome: nome, nota: nota });
+
+  document.getElementById("nome").value = "";
+  document.getElementById("nota").value = "";
+
+  mostrarTodos();
+}
+
+function mostrarTodos() {
+  mostrarLista(alunos);
+}
+
+function mostrarAprovados() {
+
+  const aprovados = alunos.filter(aluno => aluno.nota >= 7);
+  mostrarLista(aprovados);
+}
+
+function mostrarLista(lista) {
+  const ul = document.getElementById("lista");
+  ul.innerHTML = "";
+
+  lista.forEach(aluno => {
+    const li = document.createElement("li");
+    li.textContent = `${aluno.nome} - Nota: ${aluno.nota}`;
+    ul.appendChild(li);
+  });
+}
+</script>
+
+</body>
+</html>

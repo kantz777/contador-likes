@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Compras</title>
+</head>
+<body>
+
+  <h2>Lista de Compras</h2>
+
+  <input type="text" id="itemInput" placeholder="Digite um item">
+  <button onclick="adicionarItem()">Adicionar</button>
+
+  <ul id="lista"></ul>
+
+  <script>
+    const itens = [];
+
+    function adicionarItem() {
+      const input = document.getElementById("itemInput");
+      const valor = input.value.trim();
+
+      if (valor === "") return;
+
+      
+      itens.push(valor);
+
+      input.value = "";
+      atualizarLista();
+    }
+
+    function removerItem(index) {
+      
+      itens.splice(index, 1);
+      atualizarLista();
+    }
+
+    function atualizarLista() {
+      const ul = document.getElementById("lista");
+      ul.innerHTML = "";
+
+      itens.forEach((item, index) => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+          ${item} 
+          <button onclick="removerItem(${index})">Remover</button>
+        `;
+
+        ul.appendChild(li);
+      });
+    }
+  </script>
+
+</body>
+</html>

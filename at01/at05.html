@@ -42,32 +42,32 @@ button{
 
 function gerarTabuada(){
 
-    // variável pegando o número digitado
+    
     let numero = document.getElementById("numero").value;
 
-    // pegando a div onde a tabuada vai aparecer
+    
     let divTabuada = document.getElementById("tabuada");
 
-    // validação simples
+    
     if(numero === ""){
         divTabuada.innerHTML = "Digite um número!";
         return;
     }
 
-    // limpar resultado anterior
+
     divTabuada.innerHTML = "";
 
-    // estrutura de repetição
+    
     for(let i = 1; i <= 10; i++){
 
         let resultado = numero * i;
 
-        // criando elemento no HTML
+        
         let linha = document.createElement("p");
 
         linha.textContent = numero + " x " + i + " = " + resultado;
 
-        // adicionando ao DOM
+
         divTabuada.appendChild(linha);
     }
 }

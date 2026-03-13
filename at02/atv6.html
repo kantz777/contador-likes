@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Usuários</title>
+</head>
+<body>
+
+<button onclick="mostrarTodos()">Mostrar todos</button>
+<button onclick="mostrarMaiores()">Mostrar apenas maiores de 18</button>
+
+<ul id="lista"></ul>
+
+<script>
+let usuarios = [
+  {nome:"Ana", idade:17},
+  {nome:"Carlos", idade:22},
+  {nome:"Mariana", idade:15},
+  {nome:"João", idade:30},
+  {nome:"Lucas", idade:18}
+]
+
+function mostrar(listaUsuarios){
+  let lista = document.getElementById("lista")
+  lista.innerHTML = ""
+  listaUsuarios.forEach(u=>{
+    let li = document.createElement("li")
+    li.textContent = u.nome + " - " + u.idade
+    lista.appendChild(li)
+  })
+}
+
+function mostrarTodos(){
+  mostrar(usuarios)
+}
+
+function mostrarMaiores(){
+  let maiores = usuarios.filter(u=>u.idade > 18)
+  mostrar(maiores)
+}
+
+mostrarTodos()
+</script>
+
+</body>
+</html>

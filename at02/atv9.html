@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Catálogo de Filmes</title>
+</head>
+<body>
+
+<input type="text" id="titulo" placeholder="Título">
+<input type="text" id="genero" placeholder="Gênero">
+<input type="number" id="ano" placeholder="Ano">
+
+<button onclick="adicionar()">Adicionar Filme</button>
+<button onclick="filtrar()">Filtrar por gênero</button>
+<button onclick="mostrarTodos()">Mostrar todos</button>
+
+<ul id="lista"></ul>
+
+<script>
+let filmes = []
+
+function adicionar(){
+  let titulo = document.getElementById("titulo").value
+  let genero = document.getElementById("genero").value
+  let ano = document.getElementById("ano").value
+
+  if(titulo && genero && ano){
+    filmes.push({titulo, genero, ano})
+    document.getElementById("titulo").value = ""
+    document.getElementById("genero").value = ""
+    document.getElementById("ano").value = ""
+    renderizar(filmes)
+  }
+}
+
+function renderizar(listaFilmes){
+  let lista = document.getElementById("lista")
+  lista.innerHTML = ""
+  listaFilmes.forEach(f=>{
+    let li = document.createElement("li")
+    li.textContent = f.titulo + " - " + f.genero + " - " + f.ano
+    lista.appendChild(li)
+  })
+}
+
+function filtrar(){
+  let genero = prompt("Digite o gênero para filtrar:")
+  if(genero){
+    let filtrados = filmes.filter(f=>f.genero.toLowerCase() === genero.toLowerCase())
+    renderizar(filtrados)
+  }
+}
+
+function mostrarTodos(){
+  renderizar(filmes)
+}
+</script>
+
+</body>
+</html>

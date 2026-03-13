@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista de Tarefas</title>
+</head>
+<body>
+
+<input type="text" id="tarefa">
+<button onclick="adicionar()">Adicionar</button>
+
+<ul id="lista"></ul>
+
+<script>
+let tarefas = []
+
+function adicionar(){
+  let texto = document.getElementById("tarefa").value
+  if(texto){
+    tarefas.push(texto)
+    document.getElementById("tarefa").value = ""
+    renderizar()
+  }
+}
+
+function editar(index){
+  let novo = prompt("Editar tarefa:", tarefas[index])
+  if(novo){
+    tarefas.splice(index,1,novo)
+    renderizar()
+  }
+}
+
+function renderizar(){
+  let lista = document.getElementById("lista")
+  lista.innerHTML = ""
+  tarefas.forEach((t,i)=>{
+    let li = document.createElement("li")
+    li.textContent = t + " "
+    let btn = document.createElement("button")
+    btn.textContent = "Editar"
+    btn.onclick = ()=>editar(i)
+    li.appendChild(btn)
+    lista.appendChild(li)
+  })
+}
+</script>
+
+</body>
+</html>

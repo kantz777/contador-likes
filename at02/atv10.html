@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Ranking de Jogadores</title>
+</head>
+
+<body>
+
+<h2>Ranking de Jogadores</h2>
+
+<input id="nome" placeholder="Nome do jogador">
+<input id="pontos" type="number" placeholder="Pontos">
+
+<button onclick="novoJogador()">Adicionar</button>
+
+<ul id="ranking"></ul>
+
+<script>
+let jogadores = [
+  { jogador: "Ana", pontos: 120 },
+  { jogador: "Carlos", pontos: 200 },
+  { jogador: "João", pontos: 150 }
+];
+
+
+
+function adicionarJogador(nome, pontos) {
+
+  jogadores.push({
+    jogador: nome,
+    pontos: pontos
+  });
+
+  atualizarRanking();
+}
+
+
+
+function gerarRanking() {
+
+  let ordenado = [...jogadores].sort((a, b) => b.pontos - a.pontos);
+
+  let ranking = ordenado.map((jogador, index) => {
+    return {
+      posicao: index + 1,
+      jogador: jogador.jogador,
+      pontos: jogador.pontos
+    };
+  });
+
+  return ranking;
+}
+
+
+
+function atualizarRanking() {
+
+  let lista = document.getElementById("ranking");
+  lista.innerHTML = "";
+
+  let ranking = gerarRanking();
+
+  ranking.forEach(item => {
+
+    let li = document.createElement("li");
+
+    li.textContent =
+      item.posicao + "º - " +
+      item.jogador + " (" +
+      item.pontos + " pontos)";
+
+    lista.appendChild(li);
+  });
+
+}
+
+
+
+function novoJogador() {
+
+  let nome = document.getElementById("nome").value;
+  let pontos = Number(document.getElementById("pontos").value);
+
+  adicionarJogador(nome, pontos);
+
+}
+
+
+atualizarRanking();
+
+</script>
+
+</body>
+</html>

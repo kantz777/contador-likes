@@ -45,14 +45,14 @@
     <p id="resultado"></p>
 
     <script>
-        // Selecionando elementos do DOM
+        
         const formulario = document.getElementById("formCalculadora");
         const campoNum1 = document.getElementById("num1");
         const campoNum2 = document.getElementById("num2");
         const seletorOperacao = document.getElementById("operacao");
         const resultado = document.getElementById("resultado");
 
-        // Função responsável pelo cálculo
+       
         function calcular(a, b, operacao) {
 
             let total;
@@ -73,20 +73,18 @@
             return total;
         }
 
-        // Evento do formulário
+        
         formulario.addEventListener("submit", function(event) {
 
-            event.preventDefault(); // Evita recarregar a página
-
-            // Variáveis pegando valores do formulário
+            event.preventDefault(); 
             let numero1 = Number(campoNum1.value);
             let numero2 = Number(campoNum2.value);
             let operacao = seletorOperacao.value;
 
-            // Chamando a função
+            
             let resultadoFinal = calcular(numero1, numero2, operacao);
 
-            // Mostrando resultado na tela
+          
             resultado.textContent = "Resultado: " + resultadoFinal;
         });
     </script>

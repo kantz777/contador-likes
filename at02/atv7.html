@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tarefas</title>
+</head>
+<body>
+
+<input type="text" id="tarefa" placeholder="Nova tarefa">
+<button onclick="adicionar()">Adicionar</button>
+
+<ul id="lista"></ul>
+
+<script>
+let tarefas = JSON.parse(localStorage.getItem("tarefas")) || []
+
+function salvar(){
+  localStorage.setItem("tarefas", JSON.stringify(tarefas))
+}
+
+function adicionar(){
+  let texto = document.getElementById("tarefa").value
+  if(texto){
+    tarefas.push(texto)
+    document.getElementById("tarefa").value = ""
+    salvar()
+    renderizar()
+  }
+}
+
+function renderizar(){
+  let lista = document.getElementById("lista")
+  lista.innerHTML = ""
+  tarefas.forEach(t=>{
+    let li = document.createElement("li")
+    li.textContent = t
+    lista.appendChild(li)
+  })
+}
+
+renderizar()
+</script>
+
+</body>
+</html>

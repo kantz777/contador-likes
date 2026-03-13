@@ -58,9 +58,9 @@ button{
 
 function validarFormulario(event){
 
-    event.preventDefault(); // impede envio do formulário
+    event.preventDefault(); 
 
-    // variáveis
+  
     let nome = document.getElementById("nome").value;
     let email = document.getElementById("email").value;
 
@@ -68,26 +68,26 @@ function validarFormulario(event){
     let erroEmail = document.getElementById("erroEmail");
     let mensagem = document.getElementById("mensagem");
 
-    // limpar mensagens anteriores
+    
     erroNome.innerHTML = "";
     erroEmail.innerHTML = "";
     mensagem.innerHTML = "";
 
     let valido = true;
 
-    // validação do nome
+    
     if(nome === ""){
         erroNome.innerHTML = "O nome não pode estar vazio";
         valido = false;
     }
 
-    // validação do email
+  
     if(!email.includes("@")){
         erroEmail.innerHTML = "Email inválido. Deve conter @";
         valido = false;
     }
 
-    // se tudo estiver correto
+   
     if(valido){
         mensagem.innerHTML = "Cadastro realizado com sucesso!";
         mensagem.className = "sucesso";
@@ -95,7 +95,7 @@ function validarFormulario(event){
 
 }
 
-// evento do formulário
+
 document.getElementById("formCadastro").addEventListener("submit", validarFormulario);
 
 </script>
